@@ -31,23 +31,23 @@
 
 ### Table of contents
 
-##### Main Page
+#### Main Page
 
 The homepage for the student database where an user can be redirected to the respective operation pages based on the link the user clicks on. 
 
-##### Register Student Details Page
+#### Register Student Details Page
 
 Register Student Details Page is where the student form where student data is entered in the input fields. The form data is then validated using defined function `validateAndGetFormData()`. If any required field is empty, then it alerts the user to fill in the field. With validated data being converted to `JSON` string, a `PUT` request is sent to the `JPDB` api for handling insertions. On successfull insertion, user is alerted the success message before resetting the form for other records to be inserted. 
 
-##### Get Student Details Page
+#### Get Student Details Page
 
 Get Student Details Page allows the user to get record column details based on user roll number. It displays the fetched data in a div container which is made visible using `display:block` along with the creation date and time. It has a `Clear` hyperlink to clear the form and reset the div container to `display:none`.
 
-#####  Update Student Details Page
+####  Update Student Details Page
 
 Update Student Details Page can be used to update existing records in the relation. It requires the primary key which is roll number. A new custom function `getRecordNumberByKey(roll)` was created to get record number based on roll number of a student. The functional scope of this is limited to change any field other than the primary key which is thought of to be the roll number in this case. If all fields are left empty, it prompts the user to enter proper data to be updated. At least one field other than the roll number is to be given to update. The function `validateAndGetFormData()` is modified to perform an action of filtering those keys inside the `JSON` which have empty string values to prevent those fields from updating unnecessarily.
 
-#####  Delete Student Details Page
+####  Delete Student Details Page
 
 Delete Student Details Page can be used to delete records in the relation. THe form field asks for roll number of the user and upon clicking `Delete`, a prompt is shown to user to confirm the deletion of the record associated with the provided roll number. On confirming it, the record is successfully deleted, while on cancelling the request the form is cleared without sending any request. 
 
