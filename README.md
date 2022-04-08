@@ -54,17 +54,21 @@ Delete Student Details Page can be used to delete records in the relation. THe f
 ### Illustrations
 
 
+
 ![Main Page](https://github.com/philomath242/Login2Xplore-Project/blob/9ec3046d2214e060130b3c4bb4763ebdb92cbb75/Snaps/mainpage.jpg)
+#####  Main Page
 
 ![Register Student Details Page](https://github.com/philomath242/Login2Xplore-Project/blob/9ec3046d2214e060130b3c4bb4763ebdb92cbb75/Snaps/registerstudentdetailspage.jpg)
+#####  Register Student Details Page
 
 ![Get Student Details Page](https://github.com/philomath242/Login2Xplore-Project/blob/9ec3046d2214e060130b3c4bb4763ebdb92cbb75/Snaps/getstudentdetailspage.jpg)
+#####  Get Student Details Page
 
 ![Update Student Details Page](https://github.com/philomath242/Login2Xplore-Project/blob/9ec3046d2214e060130b3c4bb4763ebdb92cbb75/Snaps/updatestudentdetailspage.jpg)
+#####  Update Student Details Page
 
 ![Delete Student Details Page](https://github.com/philomath242/Login2Xplore-Project/blob/9ec3046d2214e060130b3c4bb4763ebdb92cbb75/Snaps/deletestudentdetailspage.jpg)
-
-
+#####  Delete Student Details Page
 
 
 ### Scope of functionalities
