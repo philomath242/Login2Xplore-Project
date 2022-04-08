@@ -3,101 +3,61 @@
 <html lang="en">
 
 <head>
-    <title>Bootstrap Example</title>
+    <title>Main - Student Database with JPDB</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <script src="http://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js"></script>
+
+    <style>
+        h1 {
+            font-size: 50px;
+            color: orangered;
+            margin: 80px auto 30px auto;
+        }
+
+        h3 {
+
+            color: rgb(164, 158, 155);
+            margin: -20px auto 60px auto;
+        }
+
+        div.container {
+            text-align: center;
+        }
+
+        div.container a {
+            display: block;
+            font-size: x-large;
+            margin: 30px auto;
+            text-decoration: dotted;
+        }
+        a span{
+            color: #033d71eb;
+        }
+    </style>
+
+
 </head>
 
 <body>
     <div class="container">
-        <h2>Vertical (basic) form</h2>
-        <form id="empForm" method="post">
-            <div class="form-group">
-                <span><label for="empId">Employee ID:</label> <label id="empIdMsg">
-                    </label></span>
-                <input type="text" class="form-control" name="empId" id="empId" placeholder="Enter Employee ID"
-                    required>
-            </div>
-            <div class="form-group">
-                <label for="empName">Employee Name:</label>
-                <input type="text" class="form-control" id="empName" placeholder="Enter Employee Name" name="empName">
-            </div>
-            <div class="form-group">
-                <label for="empEmail">Email:</label>
-                <input type="email" class="form-control" id="empEmail" placeholder="Enter Employee Email"
-                    name="empEmail">
-            </div>
-            <input type="button" class="btn btn-primary" id="empSave" value="Save" onclick="saveEmployee()">
-        </form>
+        <h1>KGP Student Database</h1>
+
+        <h3>A demonstration project for college students database using JsonPowerDB</h3>
+
+        <a href="studentform.html"><span>Register</span> Student Data</a>
+        <a href="readstudent.html"><span>Get</span> Student Data</a>
+        <a href="updatestudent.html"><span>Update</span> Student Data</a>
+        <a href="deletestudent.html"><span>Delete</span> Student Data</a>
+
     </div>
 
 
 
-    <script>
-
-        
-
-        function validateAndGetFormData() {
-            console.log("here", getFormDataInJson($("#empForm")));
-            var empIdVar = $("#empId").val();
-            if (empIdVar === "") {
-                alert("Employee ID Required Value");
-                $("#empId").focus();
-                return "";
-            }
-            var empNameVar = $("#empName").val();
-            if (empNameVar === "") {
-                alert("Employee Name is Required Value");
-                $("#empName").focus();
-                return "";
-            }
-            var empEmailVar = $("#empEmail").val();
-            if (empEmailVar === "") {
-                alert("Employee Email is Required Value");
-                $("#empEmail").focus();
-                return "";
-            }
-            var jsonStrObj = {
-                empId: empIdVar,
-                empName: empNameVar,
-                empEmail: empEmailVar,
-            };
-            return JSON.stringify(jsonStrObj);
-        }
 
 
-        function resetForm() {
-            $("#empId").val("")
-            $("#empName").val("");
-            $("#empEmail").val("");
-            $("#empId").focus();
-        }
-
-
-
-
-        function saveEmployee() {
-            var jsonStr = validateAndGetFormData();
-            if (jsonStr === "") {
-                return;
-            }
-            var putReqStr = createPUTRequest("90938734|-31948832731587922|90946266", jsonStr, "Employee", "EmpDetails");
-            alert(putReqStr);
-            jQuery.ajaxSetup({
-                async: false
-            });
-            var resultObj = executeCommandAtGivenBaseUrl(putReqStr, "http://api.login2explore.com:5577", "/api/iml");
-            alert(JSON.stringify(resultObj));
-            jQuery.ajaxSetup({
-                async: true
-            });
-            resetForm();
-        }
-    </script>
 </body>
 
 </html>

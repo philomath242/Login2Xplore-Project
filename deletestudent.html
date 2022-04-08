@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Delete Student Data</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="http://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js"></script>
+
+
+    <style>
+        h2 {
+            margin-top: 50px;
+            font-size: xx-large;
+            color: rgb(15, 5, 213);
+        }
+
+        div.form-group {
+            margin-top: 50px;
+        }
+
+        label {
+            font-size: 25px;
+            font-family: 'Arial Narrow Bold', sans-serif;
+            font-weight: 300;
+        }
+
+        div.form-group input {
+            font-size: large;
+            height: 40px;
+        }
+
+        ::placeholder {
+            font-size: large;
+            padding-left: 10px;
+        }
+
+        input[type="button"] {
+            margin-top: 20px;
+            border: none;
+            box-shadow: grey;
+            background-color: #88fc82;
+            color: #2c0094;
+            padding: 10px 40px;
+            font-size: 25px;
+        }
+
+        a {
+            font-size: large;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Student Details</h2>
+        <form id="studentForm" method="post">
+            <div class="form-group">
+                <span><label for="Student Roll Number">Roll Number</label> <label id="studentRollMsg">
+                    </label></span>
+                <input type="text" class="form-control" name="roll_number" id="roll"
+                    placeholder="Enter roll number to be deleted" required>
+            </div>
+
+            <input type="button" class="btn btn-primary" id="studentdel" value="Delete" onclick="saveStudentDetails()">
+        </form>
+        <br><br>
+        <a href="index.html"> Go to Main Page</a>
+    </div>
+
+
+
+    <script>
+
+        function validateAndGetFormData() {
+
+            var studentRollVar = $("#roll").val();
+            if (studentRollVar === "") {
+                alert("Student Roll Number is required");
+                $("#roll").focus();
+                return "";
+            }
+            return studentRollVar;
+        }
+
+        function getRecordNumberByKey(roll) {
+            var jsonStr = JSON.stringify({
+                roll_number: roll
+            });
+
+            var putReqStr = createGET_BY_KEYRequest("90938734|-31948832731587922|90946266", "KGP", "StudentDetails", jsonStr, true, true);
+            // console.log(putReqStr);
+            jQuery.ajaxSetup({
+                async: false
+            });
+            var resultObj = executeCommandAtGivenBaseUrl(putReqStr, "http://api.login2explore.com:5577", "/api/irl");
+
+            return JSON.parse(resultObj["data"])["rec_no"];
+        }
+
+
+        function resetForm() {
+            $("#roll").val("");
+            $("#roll").focus();
+        }
+
+
+        function saveStudentDetails() {
+            var jsonStr = validateAndGetFormData();
+            if (jsonStr === "") {
+                return;
+            }
+            var answer = window.confirm("Delete student details for roll number " + jsonStr + " ?");
+
+
+            if (answer) {
+                var reqId = getRecordNumberByKey(jsonStr);
+
+                var removeReqStr = createREMOVERecordRequest("90938734|-31948832731587922|90946266", "KGP", "StudentDetails", reqId.toString());
+                jQuery.ajaxSetup({
+                    async: false
+                });
+                var resultObj = executeCommandAtGivenBaseUrl(removeReqStr, "http://api.login2explore.com:5577", "/api/iml");
+                alert("Deleted Students Details Successfully ");
+                jQuery.ajaxSetup({
+                    async: true
+                });
+                resetForm();
+            }
+            else {
+                resetForm();
+                return;
+            }
+
+
+        }
+    </script>
+</body>
+
+</html>
