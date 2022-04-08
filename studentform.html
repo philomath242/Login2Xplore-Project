@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <title>Student Form with JPDB</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="http://login2explore.com/jpdb/resources/js/0.0.3/jpdb-commons.js"></script>
+
+
+    <style>
+        h2 {
+            font-size: xx-large;
+            color: rgb(15, 5, 213);
+        }
+
+        div.form-group {
+            margin-top: 50px;
+        }
+
+        label {
+            font-size: 25px;
+            font-family: 'Arial Narrow Bold', sans-serif;
+            font-weight: 300;
+        }
+
+        div.form-group input {
+            font-size: large;
+            height: 40px;
+        }
+
+        ::placeholder {
+            font-size: large;
+            padding-left: 10px;
+        }
+
+        input[type="button"] {
+            margin-top: 20px;
+            border: none;
+            box-shadow: grey;
+            background-color: #88fc82;
+            color: #2c0094;
+            padding: 10px 40px;
+            font-size: 25px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Student Details Form</h2>
+        <form id="studentForm" method="post">
+            <div class="form-group">
+                <span><label for="Student Roll Number">Roll Number</label> <label id="studentRollMsg">
+                    </label></span>
+                <input type="text" class="form-control" name="roll_number" id="roll"
+                    placeholder="Enter your roll number" required>
+            </div>
+            <div class="form-group">
+                <label for="Student Name">Student Name</label>
+                <input type="text" class="form-control" id="studentname" placeholder="Enter your name" name="name">
+            </div>
+            <div class="form-group">
+                <label for="Student Email Address">Email Address</label>
+                <input type="email" class="form-control" id="studentemail" placeholder="Enter your email address"
+                    name="email_address">
+            </div>
+            <div class="form-group">
+                <label for="Student Mobile Number">Mobile Number</label>
+                <input type="tel" class="form-control" id="studentcontact" placeholder="Enter your mobile number"
+                    name="contact">
+            </div>
+            <input type="button" class="btn btn-primary" id="studentsave" value="Save" onclick="saveStudentDetails()">
+        </form>
+    </div>
+
+
+
+    <script>
+
+        function validateAndGetFormData() {
+
+            var studentRollVar = $("#roll").val();
+            if (studentRollVar === "") {
+                alert("Student Roll Number is required");
+                $("#roll").focus();
+                return "";
+            }
+            var studentNameVar = $("#studentname").val();
+            if (studentNameVar === "") {
+                alert("Student Name is required");
+                $("#studentname").focus();
+                return "";
+            }
+            var studentEmailVar = $("#studentemail").val();
+            if (studentEmailVar === "") {
+                alert("Student Email Address is required");
+                $("#studentemail").focus();
+                return "";
+            }
+            var studentContactVar = $("#studentcontact").val();
+            if (studentContactVar === "") {
+                alert("Student Mobile Number is required");
+                $("#studentcontact").focus();
+                return "";
+            }
+            var jsonStrObj = {
+                roll_number: studentRollVar,
+                name: studentNameVar,
+                email_address: studentEmailVar,
+                contact: studentContactVar
+            };
+            console.log("posted details", jsonStrObj);
+            return JSON.stringify(jsonStrObj);
+        }
+
+
+        function resetForm() {
+            $("#roll").val("");
+            $("#studentname").val("");
+            $("#studentemail").val("");
+            $("#studentcontact").val("");
+            $("#roll").focus();
+        }
+
+
+        function saveStudentDetails() {
+            var jsonStr = validateAndGetFormData();
+            if (jsonStr === "") {
+                return;
+            }
+            var putReqStr = createPUTRequest("90938734|-31948832731587922|90946266", jsonStr, "KGP", "StudentDetails");
+            jQuery.ajaxSetup({
+                async: false
+            });
+            var resultObj = executeCommandAtGivenBaseUrl(putReqStr, "http://api.login2explore.com:5577", "/api/iml");
+            alert("Saved Students Details Successfully ");
+            jQuery.ajaxSetup({
+                async: true
+            });
+            resetForm();
+        }
+    </script>
+</body>
+
+</html>
