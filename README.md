@@ -71,6 +71,22 @@ Delete Student Details Page can be used to delete records in the relation. THe f
 #####  Delete Student Details Page
 
 
+
+
+
+###  ________________________________________________________
+# Site Structure
+`index.html`         #       Main Page
+  ├─ `studentform.html` #       Register Student Details Page
+  ├─ `readstudent.html`- #       Get Student Details Page
+  ├─ `updatestudent.html` - #       Update Student Details Page
+  ├─ `deletestudent.html`#       Delete Student Details Page
+  
+  ###  ________________________________________________________
+
+
+
+
 ### Scope of functionalities
 
 #####  It is created with my college in mind with just three fields namely student's roll number, student's name and student's email address, but the functional scope can be extended to allow different student databases with multiple fields.
