@@ -71,6 +71,10 @@ Delete Student Details Page can be used to delete records in the relation. THe f
 #####  Delete Student Details Page
 
 
+![Stored Records in Relation in Database](https://github.com/philomath242/Login2Xplore-Project/blob/50ec1284f16a128130c13bde6e01be3d0be76d8f/Snaps/database.jpg)
+#####  Stored Records in Relation in Database
+
+
 
 
 
