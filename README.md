@@ -76,11 +76,11 @@ Delete Student Details Page can be used to delete records in the relation. THe f
 
 ###  ________________________________________________________
 # Site Structure
-`index.html`         #       Main Page
-  ├─ `studentform.html` #       Register Student Details Page
-  ├─ `readstudent.html`- #       Get Student Details Page
-  ├─ `updatestudent.html` - #       Update Student Details Page
-  ├─ `deletestudent.html`#       Delete Student Details Page
+`index.html`         #       Main Page  <br />
+  ├─ `studentform.html` #       Register Student Details Page   <br />
+  ├─ `readstudent.html`- #       Get Student Details Page   <br />
+  ├─ `updatestudent.html` - #       Update Student Details Page   <br />
+  ├─ `deletestudent.html`#       Delete Student Details Page   <br />
   
   ###  ________________________________________________________
 
